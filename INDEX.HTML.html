@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma Valentine 💖</title>
+
+<style>
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #ff1493, #000000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 45px;
+    text-shadow: 0 0 20px pink;
+}
+
+button {
+    padding: 15px 35px;
+    margin: 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes {
+    background: linear-gradient(45deg, hotpink, deeppink);
+    color: white;
+}
+
+.yes:hover {
+    transform: scale(1.2);
+}
+
+.no {
+    background-color: black;
+    color: pink;
+    border: 2px solid pink;
+}
+
+.flower {
+    position: absolute;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+
+.message {
+    font-size: 35px;
+    margin-top: 20px;
+    animation: pop 1s ease-in-out;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Veux-tu être ma Valentine ? 💖</h1>
+    <button class="yes" onclick="sayYes()">Oui</button>
+    <button class="no" onclick="moveButton(this)">Non</button>
+    <div id="result"></div>
+</div>
+
+<script>
+
+function sayYes() {
+
+    document.getElementById("result").innerHTML =
+    "<div class='message'>🌸 Oui c'est magnifique ! 🌸<br>Je suis l'homme de ta vie 💕</div>";
+
+    for(let i=0; i<60; i++){
+
+        let flower = document.createElement("img");
+        flower.src = "https://pngimg.com/uploads/rose/rose_PNG667.png";
+        flower.className = "flower";
+
+        let size = Math.random() * 40 + 30;
+        flower.style.width = size + "px";
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = (Math.random() * 4 + 3) + "s";
+        flower.style.filter = "drop-shadow(0 0 10px hotpink)";
+
+        document.body.appendChild(flower);
+    }
+}
+
+function moveButton(btn) {
+    btn.style.position = "absolute";
+    btn.style.top = Math.random() * 80 + "vh";
+    btn.style.left = Math.random() * 80 + "vw";
+}
+
+</script>
+
+</body>
+</html>
